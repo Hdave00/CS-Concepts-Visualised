@@ -1,0 +1,45 @@
+<!-- This page is where the user will be redirected to, should the user want to see how cipher works.
+ the design elements are taken from Bootstrap, mentioned in the layout html file -->
+<!-- the python logic for cipher application was made by me, converting it from C to python and using the backend logic
+  in app.py-->
+
+{% extends "layout.html" %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block main %}
+    <div class="container mt-5">
+        <h2>Caesar Cipher</h2>
+        <p>As we saw in the definiton for arrays, the very nature of arrays allows us to manipulate bits in memory (as bits are stored back-to-back or contiguously in memory).
+            Caesar Cipher is one of the first "encryption" method that was used to send cryptic messages with a "key", which arranged the latin alphabets
+            into a specific order in such a way that anyone with the key could decipher the message. Ususally one would want to preserve case sensitivity
+            and special characters as well, simply because they are an expression that can provide better context to the intended reciever. So if the key is 1,
+            the whole alphabet moves to the "right" by 1, A becomes B, C becomes D and so on.
+            Below is a simple application to see this in action.
+        </p>
+        </div>
+        <form method="post" class="mt-3">
+            <div class="mb-3">
+                <label for="key" class="form-label">Key:</label>
+                <input type="text" id="key" name="key" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="plaintext" class="form-label">Plaintext:</label>
+                <input type="text" id="plaintext" name="plaintext" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Encrypt</button>
+        </form>
+            {% if error %}
+        <div class="alert alert-danger mt-3">
+            <p>{{ error }}</p>
+        </div>
+        {% endif %}
+                {% if ciphertext %}
+                    <div class="alert alert-success mt-3">
+                        <p>Ciphertext: {{ ciphertext }}</p>
+                    </div>
+                {% endif %}
+            </div>
+{% endblock %}

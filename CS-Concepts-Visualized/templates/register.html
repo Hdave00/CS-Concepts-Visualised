@@ -1,0 +1,18 @@
+<!-- This will be the first thing user will see IF they are not registered
+ the design elements are taken from Bootstrap, mentioned in the layout html file-->
+
+{% extends "layout.html" %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block main %}
+    <form action="/register" method="post">
+        {{ form.csrf_token }}
+        {{ form.username.label }} {{ form.username }}
+        {{ form.password.label }} {{ form.password }}
+        {{ form.confirm_password.label }} {{ form.confirm_password }}
+        <button class="btn btn-primary" type="submit">Register</button>
+    </form>
+{% endblock %}

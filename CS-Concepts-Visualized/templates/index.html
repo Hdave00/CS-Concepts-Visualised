@@ -1,0 +1,76 @@
+<!--index, usually the home page, as is the case here as well-->
+{% extends "layout.html" %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block main %}
+<div class="container mt-5">
+    <!-- Main heading -->
+    <div class="text-center zone">
+        <h1 class="display-4">Welcome to the world of CS!</h1>
+        <p class="lead text-light" style="text-align: left;">
+            In my process of learning Computer Science, the main thing I struggled with and still do, is remembering syntax and some core principles.
+            There are a few reasons as to why this is. Personally, I have trouble remembering all these syntaxes for all these languages, but one thing is for sure: C, as "low level" as it may seem, is the best way to get started and have a quick look at what Computer Science is at surface level, and how software interacts with hardware, without getting into assembly.
+            This is why here on this web-application I have prepared visual representations mainly for a short and quick reference. There is also a scored quiz, but you will need to register and log in to
+            access the quiz and your score table.
+        </p>
+    </div>
+
+    <!-- Content section for main text -->
+    <div class="row mt-5 zone">
+        <div class="col-lg-12">
+            <p class="fs-5">
+                Dip your feet into algorithms, and computational logic by logical thinking.
+                This space is designed to remind you of core concepts and make it easy to quickly recall and reference some basic principles.
+                Whether you are a beginner or an experienced developer, there's something there for you.
+            </p>
+        </div>
+    </div>
+
+    <!-- Code box section -->
+    <div class="row mt-4 zone">
+        <div class="col-md-12">
+            <h3 class="text-light">The quintessential first program!</h3>
+            <pre><code class="language-c">
+                #include &lt;stdio.h&gt;
+
+                int main(void)
+                {
+                    printf("Hello, world!\n");
+                    return 0;
+                }
+            </code></pre>
+        </div>
+    </div>
+
+    <!-- Smaller paragraph section -->
+    <div class="row mt-4">
+        <!-- First card -->
+        <div class="col-md-12 mb-4 zone">
+            <h5 class="text-light">This is a demonstration web-app</h5>
+            <p>
+                This web-app is an exercise in a little bit of what I have learned about CS to revisit and re-learn some core concepts. I decided to make the final project a bit challenging but of great personal value to me as I can combine a little bit of what I learnt and core principles, and package it in a useful and cohesive web-application not just for my benefit but for others who want a quick reminder of a concept or simply to browse the contents.
+            </p>
+        </div>
+
+        <!-- Second card -->
+        <div class="col-md-12 mb-4 zone">
+            <h5 class="text-light">How the web-app will work</h5>
+            <p>
+                There will be boxes of code for an example of a concept, its definition, and use case for each core concept.
+                Some visual representations in the form of interactive applications/visualizations like Caesar Cipher and the Sort Algorithm are highly recommended to visit only after you have understood the concept of Arrays and Algorithms.
+            </p>
+        </div>
+
+        <!-- Third card -->
+        <div class="col-md-12 zone">
+            <h5 class="text-light">Navigate the pages from the navbar</h5>
+            <p>
+                There are quite a few core concepts. Use the navbar and pick whatever takes your fancy. By selecting the dropdown menu under "more," you will be able to see the quiz on offer. After you sift through these core concepts, test yourself with a short interactive quiz.
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

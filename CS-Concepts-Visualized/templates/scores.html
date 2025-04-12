@@ -1,0 +1,21 @@
+<!-- displays the scores for the user -->
+
+{% extends "layout.html" %}
+
+{% block title %}
+     
+{% endblock %}
+
+{% block main %}
+<h1>Your Scores</h1>
+<table>
+    <tr>
+        <th>Score</th>
+    </tr>
+    {% for score in scores %}
+    <tr>
+        <td>{{ score['score'] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

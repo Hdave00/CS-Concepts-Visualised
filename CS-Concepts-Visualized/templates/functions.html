@@ -1,0 +1,145 @@
+<!--the design elements are taken from Bootstrap, mentioned in the layout html file-->
+{% extends "layout.html" %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block main %}
+<div class="container mt-5">
+    <!-- main heading -->
+    <div class="text-center">
+        <h1 class="display-4">Functions</h1>
+        <p class="lead text-light">A function is a block of code that performs a specific task. Functions allow us to break our program into smaller, more manageable chunks of code that can be reused throughout the program.
+            Functions are useful for improving code readability, reusability, and modularity.
+        </p>
+    </div>
+
+    <!-- bit more in depth explanation -->
+    <div class="row mt-5">
+        <div class="col-lg-12">
+            <h2 class="text-light">What are Functions?</h2>
+            <p class="fs-5" style="text-align: left;">
+                We can think of a function sort of like a set of instructions but these set of instructions, are isolated from the main function of the whole programs. Specific
+                functions, do specific tasks that don't necessarily return their value to the user, but instead to the main function of the program. An example below is of a
+                function that takes the value of two numbers and returns their sum.
+            </p>
+        </div>
+    </div>
+
+    <!-- sample code block -->
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <h3 class="text-light">Example code of a Function</h3>
+            <pre><code class="language-c">
+                #include &lt;stdio.h&gt;
+
+                    // we declare our function outside the main program
+                    int addnumbers(int a, int b);
+
+                    int main()
+                    {
+                        int num1, num2, result;
+
+                        // user inputs numbers
+                        printf("Enter two numbers: ");
+                        scanf("%d %d", &num1, &num2);
+
+                        // calling the "addnumbers" function we declared earlier
+                        result = addnumbers(num1, num2);
+
+                        // displaying only the result to the user
+                        printf("The sum of %d and %d is: %d\n", num1, num2, result);
+
+                        return 0;
+                    }
+
+                    // defining what our "addnumbers" function actually does "underneath the hood"
+                    int addnumbers(int a, int b)
+                    {
+                        return a + b;
+                    }
+            </code></pre>
+        </div>
+    </div>
+
+    <!-- use cases section -->
+    <div class="row mt-4">
+        <div class="col-lg-12">
+            <h3 class="text-light mb-3">Use cases and benefits of Functions</h3>
+            <div class="accordion" id="accordionExample">
+                <!-- first accordian -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Modularity of code
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Functions allow you to break your code into smaller, manageable pieces. This makes your program easier to read, debug, and maintain and this also makes it so,
+                            that you ony have to edit something once, outside of the main program. This makes the code secure too!
+                        </div>
+                    </div>
+                </div>
+                <!-- second accordian -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Code Reusability
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Sometimes, writing the same code over and over again can become a chore, its good practice but still sort of repetitive. Functions make it so that once a function is written,
+                            it can be reused multiple times without rewriting the same code. This also reduces redundancy and the chance for potential errors (and spending hours debugging later).
+                        </div>
+                    </div>
+                </div>
+                <!-- third accordian -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Recursion
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            As you would see in the recursion section, functions can call themselves, as it the concept of recursion. This is useful in solving problems like factorials, tree traversals, and more complex algorithms
+                            to simplify your code and make the recursive aspect more readable.
+                        </div>
+                    </div>
+                </div>
+                <!-- accordian 4 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFour">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            Organizing your code
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            We know how tedious handling errors and user input can get in programs, functions help to keep your program well-organized.
+                            For example, mathematical operations, string manipulations, or input/output handling can each be in their own functions so as to reduce the risk of your function interfering with
+                            any other part of your overall program.
+                        </div>
+                    </div>
+                </div>
+                <!-- accordian 5 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFive">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            Abstracting your code
+                        </button>
+                    </h2>
+                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Abstraction is basically, reducing each part of our code to its most basic function and separating every logical block. Functions allow us to encapsulate the logic and abstract away the complexity,
+                            as users of our function don’t need to know the details of its implementation, only how to call it and what it returns.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

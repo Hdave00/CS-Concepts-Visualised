@@ -1,0 +1,150 @@
+<!-- this html page will show the user some types and define them
+ the design elements are taken from Bootstrap, mentioned in the layout html file-->
+ 
+{% extends "layout.html" %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block main %}
+<div class="container mt-5">
+    <!-- main heading -->
+    <div class="text-center">
+        <h1 class="display-4">Types</h1>
+        <p class="lead text-light"> As we have not only numbers but we also have
+            alphabets or characters, we need to differentiate between them and let the computer know how much data we want each type to store and what kind of data, so as to ensure correctness
+            and optimize memory usage (mostly only needed in simpler programming langauges like C).
+        </p>
+    </div>
+
+    <!-- bit more in-depth explanation -->
+    <div class="row mt-5">
+        <div class="col-lg-12">
+            <h2 class="text-light">What are Types?</h2>
+            <p class="fs-5">
+                In computer science, types define the kind of data a variable can hold and how the operations on that data are performed.
+                In C, types are broadly categorized into basic types (like integers and floating-point numbers), derived types (arrays, pointers, etc.), and user-defined types (structs, enums).
+            </p>
+        </div>
+    </div>
+
+    <!-- sample code block -->
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <h2 class="text-light">Example code of common Types</h2>
+            <pre><code class="language-c">
+                #include &lt;stdio.h&gt;
+
+                    // define a struct
+                    struct Person
+                    {
+                        char name[50];
+                        int age;
+                    };
+
+                    // define an enum
+                    enum Day { Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday };
+
+                    int main()
+                    {
+                        // basic types
+                        int count = 10;
+                        float price = 19.99;
+                        double preciseValue = 3.14159265359;
+                        char initial = 'A';
+
+                        // array
+                        int numbers[] = {1, 2, 3, 4, 5};
+
+                        // struct (referencing the struct data type)
+                        struct Person person1 = {"Alice", 25};
+
+                        // enum
+                        enum Day today = Wednesday;
+
+                        // output examples
+                        printf("Integer (count): %d\n", count);
+                        printf("Float (price): %.2f\n", price);
+                        printf("Double (precise value): %.10f\n", preciseValue);
+                        printf("Character (initial): %c\n", initial);
+
+                        // more elaborate output examples
+                        printf("Array (first number): %d\n", numbers[0]);
+                        printf("Struct (person's name and age): %s, %d\n", person1.name, person1.age);
+                        printf("Enum (today): %d (Wednesday is 2 in enum)\n", today);
+
+                        return 0;
+                    }
+            </code></pre>
+        </div>
+    </div>
+
+     <!-- summary table -->
+    <div class="row mt-4">
+        <div class="col-lg-12">
+            <h3 class="text-light">Different Types in C</h3>
+            <table class="table table-bordered table-hover mt-3">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Type</th>
+                        <th>Definition</th>
+                        <th>Use Case</th>
+                        <th>Examples</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>int</td>
+                        <td>represents integers (whole numbers), typically 4 bytes in size.</td>
+                        <td>counting items, looping, arithmetic operations.</td>
+                        <td>keeping track of counters, loop variables, IDs.</td>
+                    </tr>
+                    <tr>
+                        <td>float</td>
+                        <td>represents single precision floating-point numbers (decimals).</td>
+                        <td>storing real numbers with limited precision.</td>
+                        <td>calculating areas, speed, or any physical quantities.</td>
+                    </tr>
+                    <tr>
+                        <td>double</td>
+                        <td>represents double-precision floating-point numbers.</td>
+                        <td>calculations requiring high precision, e.g., physics.</td>
+                        <td>similar to float but a double is 64 bits vs float which is 32 bits and as a result can represent much larger numbers.</td>
+                    </tr>
+                    <tr>
+                        <td>char</td>
+                        <td>Represents a single character, typically 1 byte in size.</td>
+                        <td>storing characters, managing text as arrays of <code>char</code>.</td>
+                        <td>storing individual characters or strings using arrays of <code>char</code>.</td>
+                    </tr>
+                    <tr>
+                        <td>void</td>
+                        <td>represents "no type," often used for functions that do not return a value.</td>
+                        <td>declaring functions like <code>void main()</code>.</td>
+                        <td>function declaration with a NULL return value <code>int main(void)</code></td>
+                    </tr>
+                    <tr>
+                        <td>Array</td>
+                        <td>a collection of elements of the same type stored in contiguous memory.</td>
+                        <td>storing lists, matrices, or strings.</td>
+                        <td>storing and manipulating collections of same data types like sensor number of days in a year.</td>
+                    </tr>
+                    <tr>
+                        <td>Struct</td>
+                        <td>a collection of different types grouped together as a single entity.</td>
+                        <td>representing complex objects, like a <code>person</code>.</td>
+                        <td>representing more complex entities like a "book" with a title, author, and price.</td>
+                    </tr>
+                    <tr>
+                        <td>Enum</td>
+                        <td>represents a set of named integer constants.</td>
+                        <td>defining states, modes, or options.</td>
+                        <td>using symbolic names for constant values, eg, traffic light states (Red, Yellow, Green).</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,203 @@
+<!-- This page shows different operators and their use cases
+ the design elements are taken from Bootstrap, mentioned in the layout html file-->
+{% extends "layout.html" %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block main %}
+<div class="container mt-5">
+    <!-- main heading -->
+    <div class="text-center">
+        <h1 class="display-4">Operators</h1>
+        <p class="lead text-light">Operators help greatly in programming when it comes to logical operations in arithmetic scenarios. Things like +, -, =, *, might
+            make complete sense on paper but in the world of programming and CS they can have double meanings and can often lead to confusion. Personally, I have made the
+            mistake of using "=" and "==" in the wrong way so many times now! There are four main types of operators: Arithmetic, Logical, Relational, and Ternary.
+        </p>
+    </div>
+
+    <!-- bit more in-depth explanation -->
+    <div class="row mt-5">
+        <div class="col-lg-12">
+            <h2 class="text-light">What are Operators?</h2>
+            <p class="fs-5">
+                Operators in C and in programming in general, are symbols used to perform operations on variables and values. They can manipulate data and evaluate expressions. Below in the tables, you will see a quick look and
+                a short guide to refer to.
+            </p>
+        </div>
+    </div>
+
+    <!-- sample code block -->
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <h3 class="text-light">Example code of Operators</h3>
+            <pre><code class="language-c">
+                // example of arithmetic operators
+                #include &lt;stdio.h&gt;
+                    int main()
+                    {
+                        int a = 10, b = 3;
+                        printf("Addition: %i\n", a + b); // 13
+                        printf("Division: %i\n", a / b); // 3
+                        return 0;
+                    }
+                // example of relational operators
+                #include <stdio.h>
+                    int main()
+                    {
+                        int a = 5, b = 10;
+                        if (a < b)
+                        {
+                            printf("a is less than b\n");
+                        }
+                        return 0;
+                    }
+                // example of logical operators
+                #include <stdio.h>
+                    int main()
+                    {
+                        int a = 5, b = 10, c = 15;
+                        if ((a < b) && (b < c))
+                        {
+                            printf("Both conditions are true\n");
+                        }
+                        return 0;
+                    }
+                // example of ternary operators
+                #include <stdio.h>
+                    int main()
+                    {
+                        int a = 10, b = 20;
+                        int max = (a > b) ? a : b;
+                        printf("Max: %i\n", max);
+                        return 0;
+                    }
+            </code></pre>
+        </div>
+    </div>
+
+     <!-- summary table -->
+    <div class="row mt-4">
+        <div class="col-lg-12">
+            <h3 class="text-light">Types of operators in C</h3>
+            <table class="table table-bordered table-hover mt-3">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Type</th>
+                        <th>Definition</th>
+                        <th>Example</th>
+                        <th>Use Case</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Arithmetic</td>
+                        <td>Perform basic arithmetic operations.</td>
+                        <td><code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code>
+                            example: <code>a + b</code> adds <code>a</code> and <code>b</code>.</td>
+                        <td>Adding two numbers: <code>c = a + b;</code></td>
+                    </tr>
+                    <tr>
+                        <td>Relational</td>
+                        <td>Compare two values and return a boolean result.</td>
+                        <td><code>==</code>, <code>!=</code>, <code><</code>, <code>></code>, <code><=</code>, <code>>=</code>
+                            example: <code>a > b</code> checks if a is greater than b.</td>
+                        <td>Checking if one number is greater than another: <code>if (a > b)</code></td>
+                    </tr>
+                    <tr>
+                        <td>Logical</td>
+                        <td>Perform logical operations on boolean expressions.</td>
+                        <td><code>&&</code> (and), <code>||</code> (or), <code>!</code> (not)
+                            example: <code>a == b && c == d</code> checks if both <code>a</code> and <code>b</code> are equal, and <code>c</code> and <code>d</code> are equal.</td>
+                        <td>Checking if both conditions are true: <code>if ((a > b) && (c > d))</code></td>
+                    </tr>
+                    <tr>
+                        <td>Assignment</td>
+                        <td>Assign values to variables.</td>
+                        <td><code>=</code>, <code>+=</code>, <code>-=</code>, <code>*=</code>, <code>/=</code>, <code>%=</code>
+                            example: <code>a += 5</code> adds <code>5</code> to <code>a</code> and assigns it.</td>
+                        <td>Setting a value: <code>x = 10;</code> or <code>x += 5;</code></td>
+                    </tr>
+                    <tr>
+                        <td>Ternary</td>
+                        <td>A shorthand for an <code>if-else</code> statement.</td>
+                        <td>example: <code>max = (a > b) ? a : b;</code> assigns the larger value to <code>max</code>.</td>
+                        <td>Finding the maximum of two numbers: <code>max = (a > b) ? a : b;</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <h1 class="text-center">Test different C operators</h1>
+    <p class="text-light text-center">
+        Experiment with different arithmetic operators and see how they affect the program output.
+    </p>
+
+    <form id="operator-form" class="text-center">
+        <div class="mb-3">
+            <label for="operand1" class="form-label text-light">Operand 1:</label>
+            <input type="number" id="operand1" name="operand1" class="form-control" placeholder="Enter first number">
+        </div>
+        <div class="mb-3">
+            <label for="operand2" class="form-label text-light">Operand 2:</label>
+            <input type="number" id="operand2" name="operand2" class="form-control" placeholder="Enter second number">
+        </div>
+        <div class="mb-3">
+            <label for="operator" class="form-label text-light">Operator:</label>
+            <select id="operator" name="operator" class="form-select">
+                <option value="+">Addition (+)</option>
+                <option value="-">Subtraction (-)</option>
+                <option value="*">Multiplication (*)</option>
+                <option value="/">Division (/)</option>
+                <option value="%">Modulo (%)</option>
+                <option value="==">Equal to (==)</option>
+                <option value="!=">Not equal to (!=)</option>
+                <option value=">">Greater than (>)</option>
+                <option value="<">Less than (<)</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Evaluate</button>
+    </form>
+
+    <div class="mt-4">
+        <h3 id="result" class="text-light text-center"></h3>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('operator-form');
+        const resultDiv = document.getElementById('result');
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const operand1 = document.getElementById('operand1').value;
+            const operand2 = document.getElementById('operand2').value;
+            const operator = document.getElementById('operator').value;
+
+            try {
+                const response = await fetch('/evaluate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ operand1, operand2, operator })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    resultDiv.textContent = `Result: ${data.result}`;
+                } else {
+                    resultDiv.textContent = `Error: ${data.error}`;
+                }
+            } catch (error) {
+                resultDiv.textContent = 'An error occurred. Please try again.';
+            }
+        });
+    });
+</script>
+{% endblock %}

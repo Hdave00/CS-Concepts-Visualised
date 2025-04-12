@@ -1,0 +1,142 @@
+<!-- this page will handle the quiz
+ the design elements are taken from Bootstrap, mentioned in the layout html file-->
+{% extends "layout.html" %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block main %}
+<div class="header">
+    <h1>Test your C knowledge!</h1>
+    <p>(please click the submit score button at the bottom of the page after you have answered all questions)</p>
+</div>
+
+<div class="container">
+    <div class="section">
+        <h2>Choose the right options from the following ten questions</h2>
+        <hr>
+        <h3> What do we call the following? int myNumbers[ ] = {25, 50, 75, 100};</h3>
+        <button class="incorrect button1">A Dictionary</button>
+        <button class="incorrect button1">A Pointer</button>
+        <button class="incorrect button1">A Class</button>
+        <button class="correct button1">An Array</button>
+        <button class="incorrect button1">A Struct</button>
+        <p class="feedback1"></p>
+    </div>
+
+    <div class="section">
+        <hr>
+        <h3> What is the correct way to declare a variable, whose value would be an integer?</h3>
+        <button class="incorrect button1">bool variable = 5;</button>
+        <button class="incorrect button1">string variable = 4;</button>
+        <button class="incorrect button1">char variable = 8;</button>
+        <button class="correct button1">int variable = 5;</button>
+        <button class="incorrect button1">variable int = 5;</button>
+        <p class="feedback2"></p>
+    </div>
+
+    <div class="section">
+        <hr>
+        <h3> What is the type that returns a true or false value?</h3>
+        <button class="incorrect button1">String</button>
+        <button class="incorrect button1">Char</button>
+        <button class="incorrect button1">Float</button>
+        <button class="incorrect button1">Int</button>
+        <button class="correct button1">Bool</button>
+        <p class="feedback3"></p>
+    </div>
+
+    <div class="section">
+        <hr>
+        <h3> Which of these operators would increment the variable i with value of 1?</h3>
+        <button class="incorrect button1">i--</button>
+        <button class="correct button1">i++</button>
+        <button class="incorrect button1">i-+</button>
+        <button class="incorrect button1">i plus</button>
+        <button class="incorrect button1">i=+</button>
+        <p class="feedback4"></p>
+    </div>
+
+    <div class="section">
+        <hr>
+        <h3> What is a defining characteristic of an algorithm</h3>
+        <button class="correct button1">Is a specific set of instructions</button>
+        <button class="incorrect button1">Simplifies complex code</button>
+        <button class="incorrect button1">Causes inefficiency</button>
+        <button class="incorrect button1">Compiles code</button>
+        <button class="incorrect button1">Is used for sorting data</button>
+        <p class="feedback5"></p>
+    </div>
+    <div class="section">
+        <hr>
+        <h3> What is the most optimal use case of a "for loop"?</h3>
+        <button class="incorrect button1">Creating a variable</button>
+        <button class="correct button1">Iterating over multiple elements to satisfy a condition</button>
+        <button class="incorrect button1">Iterting over the entire program</button>
+        <button class="incorrect button1">Allocating memory for an instance</button>
+        <button class="incorrect button1">Defining a ruleset</button>
+        <p class="feedback6"></p>
+    </div>
+    <div class="section">
+        <hr>
+        <h3> Which conditional statement is correct?</h3>
+        <button class="incorrect button1">if else (number !=0)
+            {
+                printf(The number is positive.\n);
+            }</button>
+        <button class="incorrect button1">if (number < 0)
+            {
+                printf("The number is positive.\n");
+            }</button>
+        <button class="correct button1">if (number > 0)
+            {
+                printf("The number is positive.\n");
+            }</button>
+        <button class="incorrect button1">or if (number > 0)
+            {
+                printf("The number is positive.\n");
+            }</button>
+        <button class="incorrect button1">but also (number = 0)
+            {
+                printf(The number is positive.\n);
+            }</button>
+        <p class="feedback7"></p>
+    </div>
+    <div class="section">
+        <hr>
+        <h3> Which operator is an example of an arithmetic operator?</h3>
+        <button class="incorrect button1">"="</button>
+        <button class="correct button1">"%"</button>
+        <button class="incorrect button1">"&&"</button>
+        <button class="incorrect button1">"?"</button>
+        <button class="incorrect button1">":"</button>
+        <p class="feedback8"></p>
+    </div>
+    <div class="section">
+        <hr>
+        <h3> Which variable retains its value between function calls and is only visible within the function or file?</h3>
+        <button class="incorrect button1">Unique Variable</button>
+        <button class="incorrect button1">Global Variable</button>
+        <button class="correct button1">Static Variable</button>
+        <button class="incorrect button1">Local Variable</button>
+        <button class="incorrect button1">True Variable</button>
+        <p class="feedback9"></p>
+    </div>
+    <div class="section">
+        <hr>
+        <h3> What core concept is the Bubble Sort visualization demonstrating?</h3>
+        <button class="incorrect button1">Changing the value of types</button>
+        <button class="incorrect button1">Unsorting data in an order</button>
+        <button class="incorrect button1">Deleting data from memory</button>
+        <button class="correct button1">Sorting data in a specified order using an algorithm</button>
+        <button class="incorrect button1">Sorting data using a global variable</button>
+        <p class="feedback10"></p>
+</div>
+
+<!--link to quiz specific css file-->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesQ.css') }}">
+
+<!--link to quiz specific JS file-->
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+{% endblock %}

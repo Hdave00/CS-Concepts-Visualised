@@ -1,0 +1,125 @@
+<!--the design elements are taken from Bootstrap, mentioned in the layout html file-->
+{% extends "layout.html" %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block main %}
+<div class="container mt-5">
+    <!-- main heading -->
+    <div class="text-center">
+        <h1 class="display-4">Recursion</h1>
+        <p class="lead text-light">In the realm of Computer Science, recursion a concept of calling a function on itself. It's a tricky concept to understand and even harder to implement.
+            It can be both advantageous and disadvantageous, depending on the situation. It's very important to have a "base case" established first or even hard coded to stop the program
+            that is implementing the recursive code, to keep it from running for an indefinite time that may cause crashes or running loops.
+        </p>
+    </div>
+
+    <!-- bit more in depth explanation -->
+    <div class="row mt-4">
+        <div class="col-lg-12">
+            <h3 class="text-light">What is Recursion?</h3>
+            <p class="fs-5">
+                Recursion is essentially, a method of solving problems where a function calls itself directly or indirectly.
+                Each recursive call works on a smaller instance of the same problem until it reaches a base case, which stops further recursive calls.
+                Recursion or recursive code is often used for tasks that can be broken down into similar subtasks, such as searching, sorting, or traversing hierarchical data structures, or can even be used to make youe code
+                look prettier and more readable as it is broken down into a specific order of operation.
+            </p>
+        </div>
+    </div>
+
+    <!-- sample code block -->
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <h3 class="text-light">Example of a code using recursion to calculate the factorial of a number</h3>
+            <pre><code class="language-c">
+                #include &lt;stdio.h&gt;
+
+                    // function to calculate factorial using recursion
+                    int factorial(int n)
+                    {
+                        if (n == 0 || n == 1)
+                        { // base case
+                            return 1;
+                        }
+                        return n * factorial(n - 1); // recursive case
+                    }
+
+                    int main()
+                    {
+                        int num = 5;
+                        printf("factorial of %d is %d\n", num, factorial(num));
+                        return 0;
+                    }
+            </code></pre>
+        </div>
+    </div>
+
+    <!-- use cases accordian section from bootstrap -->
+<div class="row mt-4">
+    <div class="col-lg-12">
+        <h3 class="text-light mb-3">Use cases and disadvantages of Recursion</h3>
+        <div class="accordion" id="accordionExample">
+            <!-- first accordian -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Mathematical computations/calculations
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        The above code example is one such example of using recursion for calculating factorials <code>(n!)</code> . As it has a base case, that stops the recursion (n == 0 or n == 1)
+                        and it has a recursive case in the form of a function that keeps calling itself with a small value of ( n - 1 ), until the base case is satisfied. So if <code>num = 5</code> ,
+                        the the output in this case would be 120, as that is the factorial of 5.
+                    </div>
+                </div>
+            </div>
+            <!-- second accordian -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Divide an conquer algorithms
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        In the <a href="/algorithms">algorithms</a> section we saw how algorithms can be used to sort data. Recursion can help build those algorithms like MergeSort, BubbleSort and Linear search.
+                    </div>
+                </div>
+            </div>
+            <!-- third accordian -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Advantages of recursion
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        Recursion or recursive code has a few advantages, mainly it helps to simplify code related to linked tree traversal or liner data structures. It also helps in
+                        providing a solution for solving puzzles for games. As breifly mentioned earlier it also provied a simple solution for divide and conquer algorithms.
+                    </div>
+                </div>
+            </div>
+            <!-- accordian 4 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        Disadvantages of Recursion
+                    </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                       Recursion is a tricky concept to understand, I still have trouble with recursive code (in the unlikely case I actually use recursion) as the necessity for a base case,
+                       is easliy overlooked as it is often common to forget to add a base case to the function. We are humans learning everyday and making mistakes is part of the process, but
+                       recursion makes it easier to make such mistakes! Technically recursion also uses more memory than usual due to the function call stack (and it calling itself repeatedly),
+                       along with the risk of stack overflow if the base case is not defined properly.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

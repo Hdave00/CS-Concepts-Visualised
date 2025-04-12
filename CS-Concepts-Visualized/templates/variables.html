@@ -1,0 +1,191 @@
+<!-- this will store definition and example of variables
+ the design elements are taken from Bootstrap, mentioned in the layout html file-->
+{% extends "layout.html" %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block main %}
+<div class="container mt-5">
+    <!-- main heading -->
+    <div class="text-center">
+        <h1 class="display-4">Variables</h1>
+        <p class="lead text-light">Think of variables like an empty box between the input of a program and output. This box (much like variables in mathematics ie, x, y, z...) is ours
+            to manipulate and populate it with certain types of data in memory. This "empty box" is a very versatile tool to do many things like, get value of user input, using placeholders and so on.
+        </p>
+    </div>
+
+    <!-- bit more in-depth explanation -->
+    <div class="row mt-5">
+        <div class="col-lg-12">
+            <h2 class="text-light">What are Variables?</h2>
+            <p class="fs-5">
+                In the broader context of computer science and in technical terms, variables are named storage locations in memory used to hold data that a program can manipulate. Variables provide a way to label and reuse data throughout a program.
+                They are associated with specific types, determining what kind of data they can hold. In C, variables must be declared with a specific type before being able to use them.
+                The type determines the size, format, and permissible operations on the data.
+            </p>
+        </div>
+    </div>
+
+    <!-- sample code block -->
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <h3 class="text-light">Example code of different variables</h3>
+            <pre><code class="language-c">
+                #include &lt;stdio.h&gt;
+
+                // global variable
+                int globalVar = 100;
+
+                // function prototype
+                void staticExample();
+
+                int main()
+                {
+                    // local variable
+                    int localVar = 10;
+
+                    // register variable
+                    register int Counter;
+
+                    // printing global and local variables
+                    printf("Global variable: %i\n", globalVar);
+                    printf("Local variable: %i\n", localVar);
+
+                    // demonstrating register variable in a loop
+                    printf("Register variable (loop counter): ");
+                    for (Counter = 0; Counter < 5; Counter++)
+                    {
+                        printf("%i ", Counter);
+                    }
+                    printf("\n");
+
+                    // calling static variable demo multiple times
+                    printf("Static variable example:\n");
+                    staticExample();
+                    staticExample();
+                    staticExample();
+
+                    return 0;
+                }
+
+                // static variable demonstration
+                void staticExample()
+                {
+                    static int staticVar = 0; // retains its value between calls
+                    staticVar++;
+                    printf("Static variable: %i\n", staticVar);
+                }
+            </code></pre>
+        </div>
+    </div>
+
+     <!-- summary table -->
+    <div class="row mt-4">
+        <div class="col-lg-12">
+            <h3 class="text-light">Types of variables in C</h3>
+            <table class="table table-bordered table-hover mt-3">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Variable Type</th>
+                        <th>Definition</th>
+                        <th>Use Case Examples</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Local</td>
+                        <td>Declared within a function or block; exists only during the function's execution.</td>
+                        <td>Temporary calculations, loop counters.</td>
+                    </tr>
+                    <tr>
+                        <td>Global</td>
+                        <td>Declared outside any function and accessible throughout the program.</td>
+                        <td>Shared data across multiple functions, like configuration values.</td>
+                    </tr>
+                    <tr>
+                        <td>Static</td>
+                        <td>Retains its value between function calls and is only visible within the function or file.</td>
+                        <td>Counters, caching results within functions.</td>
+                    </tr>
+                    <tr>
+                        <td>External</td>
+                        <td>Declared using the <code>extern</code> keyword to refer to variables defined in another file.</td>
+                        <td>Sharing global variables across multiple files in large programs.</td>
+                    </tr>
+                    <tr>
+                        <td>Register</td>
+                        <td>Stored in a CPU register (if possible); mainly for faster memory access.</td>
+                        <td>Used for frequently accessed variables in performance-critical operations.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!--representing variables in bar charts using chart.js-->
+<div>
+    <h3>Variable Visualization</h3>
+    <p>Variables can be imagined as empty boxes with values that we can manipulate and see the change in output, here is a way to visualize that dynamically:</p>
+
+    <div class="input-container">
+        <label for="x">Variable X:</label>
+        <input type="number" id="x" value="10">
+        <label for="y">Variable Y:</label>
+        <input type="number" id="y" value="20">
+        <label for="z">Variable Z:</label>
+        <input type="number" id="z" value="30">
+        <button id="updateChart">Update Chart</button>
+    </div>
+
+    <canvas id="variableChart"></canvas>
+
+    <script>
+        // chart.js setup
+        const ctx = document.getElementById('variableChart').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                // initial labels
+                labels: ['X', 'Y', 'Z'],
+                datasets: [{
+                    label: 'Variable Values',
+                    // initial data
+                    data: [10, 20, 30],
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+
+        // JS function to update the chart dynamically
+        document.getElementById('updateChart').addEventListener('click', async () => {
+            // getting user input for values
+            const x = Number(document.getElementById('x').value);
+            const y = Number(document.getElementById('y').value);
+            const z = Number(document.getElementById('z').value);
+
+            // updating data that user gave us in the chart
+            chart.data.datasets[0].data = [x, y, z];
+            chart.update();
+
+            // sending data to backend of app, ie, in flask approute
+            const response = await fetch('/update_variables', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ x, y, z })
+            });
+            const result = await response.json();
+            console.log(result);
+        });
+    </script>
+</div>
+{% endblock %}

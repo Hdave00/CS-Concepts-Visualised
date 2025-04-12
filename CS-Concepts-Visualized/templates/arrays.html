@@ -1,0 +1,66 @@
+<!--The explanation for the usecase for arrays, must inlcude a link to cipher.html where the user can see how arrays can be used
+for basic encryption AND the logic for redirecting to the cipher page itself.
+The design elements are taken from Bootstrap, mentioned in the layout html file-->
+
+{% extends "layout.html" %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block main %}
+<div class="container mt-5">
+    <!-- main heading -->
+    <div class="text-center">
+        <h1 class="display-4">Arrays</h1>
+        <p class="lead text-light">Arrays are a data structure in memory that are essential for organising and maintaining bits of information.</p>
+    </div>
+
+    <!-- bit more in depth explanation -->
+    <div class="row mt-5">
+        <div class="col-lg-12">
+            <h2 class="text-light">What are Arrays?</h2>
+            <p class="fs-5" style="text-align: left;">
+                Arrays are a collection of elements, all of the same type, stored at contiguous memory locations(end to end, in order).
+                They allow efficient access to data and manipulation of data by using an index to refer to specific element(s).
+            </p>
+        </div>
+    </div>
+
+    <!-- sample code block -->
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <h3 class="text-light">Example code of an array</h3>
+            <pre><code class="language-c">
+                // including the base library
+                #include &lt;stdio.h&gt;
+
+                int main(void) {
+                    // declaring the array
+                    int numbers[5] = {10, 20, 30, 40, 50};
+
+                    for (int i = 0; i < 5; i++) {
+                        printf("%d\n", numbers[i]);
+                    }
+                    return 0;
+                }
+            </code></pre>
+        </div>
+    </div>
+
+    <!-- use cases section -->
+    <div class="row mt-4">
+        <div class="col-lg-12">
+            <h3 class="text-light">Use Cases for Arrays</h3>
+            <ul class="fs-5">
+                <li>Storing and manipulating collections of data, like a list of scores.</li>
+                <li>Implementing data structures like stacks, queues, and matrices.</li>
+                <li>Iterating over data for counting, keeping track of the count, and updating the value of the variable.</li>
+                <li>Efficiently accessing and updating elements using indices.</li>
+                <li>Manipulating bits of data for arranging them in a specified order, like for encryption in cybersecurity.</li>
+                <li>The <a href="/cipher">Caesar Cipher</a> is an infamous example of "encrypting" text with a "key". This time with bits in an array instead of a paper with a wax seal!</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

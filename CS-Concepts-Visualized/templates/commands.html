@@ -1,0 +1,91 @@
+<!-- use this html page for both commands and comments
+ the design elements are taken from Bootstrap, mentioned in the layout html file -->
+
+{% extends "layout.html" %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block main %}
+<div class="container mt-5">
+    <!-- main heading -->
+    <div class="text-center">
+        <h1 class="display-4">Commands</h1>
+        <p class="lead text-light">There are a few commands which can be helpful and useful in a pinch, to interact with IDEs and manipulate files and code.
+            Go to the example below for an idea of some of the essential commands.
+        </p>
+    </div>
+
+    <!-- bit more in depth explanation -->
+    <div class="row mt-5">
+        <div class="col-lg-12">
+            <h2 class="text-light">Comments</h2>
+            <p class="fs-5" style="text-align: left;">
+                Comments in code/programming are essential lines of explanation in plain english for explaining the logic of the code or specific links that you have included
+                or for keeping track of documentation and your thought process. Its a very good idea idea to include comments not only to visualize your thought process,
+                but also for people who will be reading your code as everyone has different styles of writing code or you might be working together in a team so you have to
+                make your code be intuitive to read for others.
+            </p>
+        </div>
+    </div>
+
+    <!-- sample code block -->
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <h3 class="text-light">Here are a few examples of linux terminal commands</h3>
+            <pre><code>
+                # List files in the current directory
+                ls
+
+                # Change directory
+                cd /path/to/directory
+
+                # Display the contents of a file
+                cat filename.txt
+
+                # Unzip a zip file
+                unzip cat.zip
+
+                # Changing directory within your folder (from a file in your main folder to your main folder)
+                cd ..
+
+                # Copy a file
+                cp source.txt destination.txt
+
+                # Move a file
+                mv oldname.txt newname.txt
+
+                # Remove a file
+                rm filename.txt
+                </code>
+                </pre>
+        </div>
+    </div>
+
+    <!-- comment code block section -->
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <h3 class="text-light">Here is an example of comments in your code</h3>
+            <pre><code class="language-c">
+                // including the base library
+                #include &lt;stdio.h&gt;
+
+                int main(void)
+                {
+                    // declaring the array of 5 numbers
+                    int numbers[5] = {10, 20, 30, 40, 50};
+
+                    // iterating over the array
+                    for (int i = 0; i < 5; i++)
+                    {
+                        // printing the numbers (type-double)
+                        printf("%d\n", numbers[i]);
+                    }
+                    return 0;
+                }
+            </code></pre>
+        </div>
+    </div>
+</div>
+{% endblock %}

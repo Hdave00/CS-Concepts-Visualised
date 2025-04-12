@@ -1,0 +1,7 @@
+Flask-WTF
+wtforms
+Flask
+Flask-Session
+Werkzeug
+requests
+dotenv

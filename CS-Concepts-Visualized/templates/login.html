@@ -1,0 +1,15 @@
+<!-- This page will be the login page the user can be redirected to-->
+{% extends "layout.html" %}
+
+{% block title %}
+    
+{% endblock %}
+
+{% block main %}
+    <form action="/login" method="post">
+        {{ form.csrf_token }}
+        {{ form.username.label }} {{ form.username }}
+        {{ form.password.label }} {{ form.password }}
+        <button class="btn btn-primary" type="submit">Log In</button>
+    </form>
+{% endblock %}

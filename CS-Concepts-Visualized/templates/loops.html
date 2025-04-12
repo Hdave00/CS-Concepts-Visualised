@@ -1,0 +1,181 @@
+<!-- this page will have the info about loops the design elements are taken from Bootstrap, mentioned in the layout html file-->
+{% extends "layout.html" %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block main %}
+<div class="container mt-5">
+    <!-- main heading -->
+    <div class="text-centre">
+        <h1 class="display-4">Loops</h1>
+        <p class="lead text-light">Loops are a very useful tool in programming and they do exactly what the sound like they do. Loops, well, "loop" over certain logic in the program to
+            repeat or iterate over certain conditions, functions or even other loops (yes, nesting loops in one another is a thing).
+        </p>
+    </div>
+
+    <!-- bit more in depth explanation -->
+    <div class="row mt-4">
+        <div class="col-lg-12">
+            <h3 class="text-light">What are loops?</h3>
+            <p class="fs-5">
+                A loop in simple terms is a programming construct that repeats a block of code as long as a specified condition is true. Loops are used to automate repetitive tasks, process collections of data,
+                or perform actions until a specific condition is met.
+            </p>
+        </div>
+    </div>
+
+    <!-- sample code block -->
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <h3 class="text-light">Example code of commonly used loops</h3>
+            <pre><code class="language-c">
+                #include &lt;stdio.h&gt;
+
+                    int main()
+                    {
+                        // for loop
+                        printf("For Loop:\n");
+                        for (int i = 1; i <= 5; i++)
+                        {
+                            printf("%d ", i);
+                        }
+                        printf("\n");
+
+                        // while loop
+                        printf("While Loop:\n");
+                        int j = 1;
+                        while (j <= 5)
+                        {
+                            printf("%d ", j);
+                            j++;
+                        }
+                        printf("\n");
+
+                        // do-while loop
+                        printf("Do-While Loop:\n");
+                        int k = 1;
+                        do
+                        {
+                            printf("%d ", k);
+                            k++;
+                        } while (k <= 5);
+                        printf("\n");
+
+                        return 0;
+                    }
+            </code></pre>
+        </div>
+    </div>
+
+    <!-- loop summary table -->
+    <div class="row mt-4">
+        <div class="col-lg-12">
+            <h3 class="text-light">Loops table</h3>
+            <table class="table table-bordered table-hover mt-3">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Loop</th>
+                        <th>Description</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>for</code></td>
+                        <td>Executes a block of code for a fixed number of iterations.</td>
+                        <td>Loop through a known range (e.g., an array).</td>
+                    </tr>
+                    <tr>
+                        <td><code>while</code></td>
+                        <td>Executes as long as the condition is true.</td>
+                        <td>Input validation or indefinite iteration.</td>
+                    </tr>
+                    <tr>
+                        <td><code>do-while</code></td>
+                        <td>Executes the code block at least once, then repeats as long as the condition is true.</td>
+                        <td>Menus or situations where an action must happen first.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- use cases section -->
+    <div class="row mt-4">
+        <div class="col-lg-12">
+            <h3 class="text-light">Use Cases for Loops</h3>
+            <ul class="fs-5">
+                <li>Loops can be used for input validation, e.g, continuously prompting the user until a valid response is received.</li>
+                <li>Loops are particularly useful for mathematical operations that require repetitive calculations like summing numbers or calculating factorials.</li>
+                <li>Iterating over collections of data like arrays lists or other data structures.</li>
+                <li>Loops, as they are simple and repetitive by nature, can be used for running a continuous simulation or process.</li>
+                <li>Loops are also extensively used in the gaming world to repeatedly execute game logic until a player achieves a goal.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- blockly workspace -->
+<div class="row mt-4">
+    <div class="col-lg-12">
+        <h3 class="text-light">Visualisation of loops</h3>
+        <div id="blocklyDiv" style="height: 480px; width: 100%; background-color: #f5f5f5;"></div>
+        <button class="btn btn-primary mt-3" id="runCode">Run Code</button>
+        <pre class="mt-3" id="output" style="background-color: #333; color: white; padding: 10px;"></pre>
+    </div>
+</div>
+</div>
+
+<script src="https://unpkg.com/blockly/blockly.min.js"></script>
+<script>
+// initialising blockly
+var workspace = Blockly.inject('blocklyDiv', {
+    toolbox: `
+    <xml xmlns="http://www.w3.org/1999/xhtml">
+            <category name="Logic" colour="%{BKY_LOGIC_HUE}">
+                <block type="controls_if"></block>
+                <block type="logic_compare"></block>
+                <block type="logic_operation"></block>
+            </category>
+            <category name="Loops" colour="%{BKY_LOOPS_HUE}">
+                <block type="controls_repeat_ext">
+                    <value name="TIMES">
+                        <shadow type="math_number">
+                            <field name="NUM">10</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="controls_repeat_ext"></block>
+                <block type="controls_whileUntil"></block>
+                <block type="controls_for"></block>
+            </category>
+            <category name="Math" colour="%{BKY_MATH_HUE}">
+                <block type="math_number"></block>
+                <block type="math_arithmetic"></block>
+            </category>
+             <category name="Text" colour="%{BKY_TEXTS_HUE}">
+             <block type="text"></block>
+             <block type="text_print"></block>
+             </category>
+            <category name="Variables" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE"></category>
+        </xml>
+    `,
+});
+
+// generating JavaScript code from blockly workspace
+document.getElementById('runCode').addEventListener('click', function () {
+    const code = Blockly.JavaScript.workspaceToCode(workspace);
+    console.log('Generated Code:', code);
+
+    // evaluate the generated code and display output
+    try {
+        const output = eval(code);
+        document.getElementById('output').innerText = output || 'Code executed successfully!';
+    } catch (error) {
+        document.getElementById('output').innerText = 'Error: ' + error.message;
+    }
+});
+</script>
+{% endblock %}

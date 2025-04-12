@@ -1,0 +1,64 @@
+<!-- this page is where the user will be able to see the sorting algorithm in action
+ the design elements are taken from Bootstrap, mentioned in the layout html file -->
+<!--Algorithm logic was made in python by me but i didnt know how to convert it to JS so i used the cs50.ai to make it work-->
+
+{% extends "layout.html" %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block main %}
+    <div id="visualization"></div>
+    <div class="text-center mt-4">
+        <button id="startButton" class="btn btn-primary">Start Visualization</button>
+    </div>
+    <p class="text-center mt-3">A visualization of how bubble sort works</p>
+
+    <!-- the functionality for this data visualiser API is taken from d3js.org -->
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script>
+        const data = [5, 3, 8, 4, 2, 7, 1, 6];
+        const width = 500;
+        const height = 200;
+        const barWidth = width / data.length;
+
+        const svg = d3.select("#visualization")
+                      .append("svg")
+                      .attr("width", width)
+                      .attr("height", height);
+
+                      function update(data, selectedIndex = -1) {
+                        svg.selectAll("rect")
+                        .data(data)
+                        .join("rect")
+                        .attr("x", (d, i) => i * barWidth)
+                        .attr("y", d => height - d * 20)
+                        .attr("width", barWidth - 1)
+                        .attr("height", d => d * 20)
+                        .attr("fill", (d, i) => i === selectedIndex ? "red" : "steelblue");
+                    }
+
+                    async function bubbleSort(data) {
+                    let n = data.length;
+                    for (let i = 0; i < n - 1; i++) {
+                        for (let j = 0; j < n - i - 1; j++) {
+                            update(data, j); // highlight the selected bar
+                            await new Promise(r => setTimeout(r, 500)); // pause for visualization
+                            if (data[j] > data[j + 1]) {
+                                [data[j], data[j + 1]] = [data[j + 1], data[j]];
+                                update(data, j + 1); // highlight the swapped bar
+                                await new Promise(r => setTimeout(r, 500)); // pause for visualization
+                        }
+                    }
+                }
+
+                    update(data); // final update to reset colors
+                }
+        // add an event listener to the button
+        document.getElementById("startButton").addEventListener("click", () => {
+            // use a copy of the data to avoid modifying the original array
+            bubbleSort([...data]);
+        });
+    </script>
+{% endblock %}
