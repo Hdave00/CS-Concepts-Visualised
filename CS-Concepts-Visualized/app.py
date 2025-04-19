@@ -1,9 +1,11 @@
+# external imports 
 import sqlite3
 from flask import Flask, flash, redirect, url_for, render_template, request, session, jsonify
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask_wtf import CSRFProtect 
 
+# local imports 
 from helpers import apology, login_required
 from forms import LoginForm, RegisterForm
 import os
