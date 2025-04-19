@@ -170,6 +170,11 @@ def commands():
     """show the commands page"""
     return render_template("commands.html")
 
+@app.route("/rubberducking")
+def rubberducking():
+    """ shows rubberducking template """
+    return render_template("rubberducking.html")
+
 @app.route("/conditionals")
 def conditionals():
     """show the conditionals page"""
