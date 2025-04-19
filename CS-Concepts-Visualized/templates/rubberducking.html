@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Rubber Duck Debugging
+{% endblock %}
+
+{% block main %}
+<div class="container mt-5">
+    <!-- main heading -->
+    <div class="text-center">
+        <h1 class="display-4">Rubber Duck Debugging</h1>
+        <p class="lead text-light">
+            In the realm of computer science, rubber duck debugging is a simple yet effective technique for debugging code. It involves explaining your code line-by-line to an inanimate object (like a rubber duck), forcing you to articulate your thought process and often spot mistakes you missed before.
+            In today's AI reliant code, which removes the link or need for you to think for yourself, which is a very, very valuable skill in all aspects of critical thinking applications, not just Computer Science, 
+            rubber ducking can prove to be a huge asset because it forces you to not only spot mistakes, that you may have otherwise missed, but the the concept of talking out loud and hearing your own thought process
+            in real time, can help fill in gaps in your train of thought and kind of puts you in a zen like, contained thought process.
+        </p>
+    </div>
+
+    <!-- bit more in depth explanation -->
+    <div class="row mt-4">
+        <div class="col-lg-12">
+            <h3 class="text-light">What is Rubber Duck Debugging?</h3>
+            <p class="fs-5">
+                The term comes from a story in the book <em>"The Pragmatic Programmer"</em> where a programmer would debug code by explaining it to a rubber duck they kept on their desk. The idea is that by slowing down and carefully describing each line of code, the developer often discovers their own mistake without any outside help.
+            </p>
+        </div>
+    </div>
+
+    <!-- demonstration placeholder -->
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <h3 class="text-light">Demonstration of Rubber Duck Debugging</h3>
+            <p class="fs-5 text-light">
+                [Insert code or interactive example here demonstrating how explaining a segment of logic helps catch an error.]
+            </p>
+        </div>
+    </div>
+
+    <!-- use cases accordian section from bootstrap -->
+    <div class="row mt-4">
+        <div class="col-lg-12">
+            <h3 class="text-light mb-3">Use cases and limitations of Rubber Duck Debugging</h3>
+            <div class="accordion" id="accordionExample">
+                <!-- first accordion -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Clarifying complex logic
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            When you're stuck on a bug or an unexpected result, walking through the logic aloud often reveals mismatched assumptions, misunderstood conditions, or faulty loops. It forces you to slow down and focus.
+                        </div>
+                    </div>
+                </div>
+                <!-- second accordion -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Teaching and learning
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            It's a great tool for students or learners to reinforce their understanding. Explaining code—even to a non-living thing—improves mental modeling and confidence in concepts.
+                        </div>
+                    </div>
+                </div>
+                <!-- third accordion -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Limitations of rubber ducking
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            While effective, this technique won't always help with logic errors that seem correct until runtime. And of course, sometimes you do need another pair of eyes to provide a different perspective.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
