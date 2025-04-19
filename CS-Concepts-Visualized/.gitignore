@@ -2,3 +2,7 @@ myenv/
 __pycache__/
 .env
 flask_session
+
+# Ignore Emscripten build artifacts
+/static/wasm/*.wasm
+/static/wasm/*.js
