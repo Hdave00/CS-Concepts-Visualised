@@ -94,6 +94,7 @@ nav .navbar-dark .navbar-nav .nav-link:hover {
     top: 80px;
     right: 20px;
     white-space: pre;
+    /* preserves whitespace, meaning that spaces, tabs, and line breaks in the HTML will be displayed exactly as they are */
     font-family: monospace;
     line-height: 0.6;
 }
