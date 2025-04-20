@@ -32,7 +32,7 @@ Rubber Duck Debugging
      <!-- sample code block -->
      <div class="row mt-4">
         <div class="col-md-12">
-            <h3 class="text-light">4 snippets of code with basic arithmetics and logic</h3>
+            <h3 class="text-light">snippets of erroneous code with arithmetics and logic</h3>
             <pre><code class="language-c">
                 // addition and division
                 #include &lt;stdio.h&gt;
@@ -81,7 +81,7 @@ Rubber Duck Debugging
     <!-- demonstration placeholder -->
     <div class="container mt-5 text-light">
         <h1 class="mb-4">Rubber Duck Debugging Practice</h1>
-        <p>Type a problem you're having in your code, and the duck will talk back to help you reason it out!</p>
+        <p>Type a problem you're having in your code or from the snippets above, and the duck will talk back to help you reason it out!</p>
       
         <textarea id="userInput" rows="5" class="form-control mt-3 mb-3" placeholder="Why is my loop infinite..."></textarea>
         <button id="askDuckBtn" class="btn btn-warning" onclick="talkToDuck()">Ask the Duck</button>
@@ -112,7 +112,7 @@ Rubber Duck Debugging
       <script>
         function talkToDuck() {
             if (!Module.ccall) {
-                document.getElementById("output").textContent = "Duck is napping 💤 (WASM not ready)";
+                document.getElementById("output").textContent = "Duck is napping (WASM not ready)";
                 return;
             }
 
