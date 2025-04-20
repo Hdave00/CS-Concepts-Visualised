@@ -200,10 +200,12 @@ def operators():
 def evaluate():
     """handle the operation parameteres"""
     data = request.get_json()
+    print("data:", {data})
     operand1 = int(data["operand1"])
     operand2 = int(data["operand2"])
+    print("operand1 and 2", {operand1, operand2})
     operator = data["operator"]
-
+    print("operator selected:", {operator})
     # performing the operations
     if operator == "+":
         result = operand1 + operand2
@@ -225,7 +227,10 @@ def evaluate():
         result = operand1 > operand2
     elif operator == "<":
         result = operand1 < operand2
+    print("result", {result})
     return jsonify({"result": result})
+    
+
 
 
 @app.route("/recursion")
