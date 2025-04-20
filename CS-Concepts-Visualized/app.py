@@ -3,7 +3,8 @@ import sqlite3
 from flask import Flask, flash, redirect, url_for, render_template, request, session, jsonify
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
-from flask_wtf import CSRFProtect 
+from flask_wtf import CSRFProtect
+from flask_wtf.csrf import generate_csrf
 
 # local imports 
 from helpers import apology, login_required
@@ -194,18 +195,19 @@ def loops():
 @app.route("/operators")
 def operators():
     """show the operators page and handle operators application logic"""
-    return render_template("operators.html")
+
+    csrf_token = generate_csrf()
+    return render_template("operators.html", csrf_token=csrf_token)
 
 @app.route("/evaluate", methods=["POST"])
 def evaluate():
     """handle the operation parameteres"""
+
     data = request.get_json()
-    print("data:", {data})
     operand1 = int(data["operand1"])
     operand2 = int(data["operand2"])
-    print("operand1 and 2", {operand1, operand2})
     operator = data["operator"]
-    print("operator selected:", {operator})
+
     # performing the operations
     if operator == "+":
         result = operand1 + operand2
@@ -227,7 +229,6 @@ def evaluate():
         result = operand1 > operand2
     elif operator == "<":
         result = operand1 < operand2
-    print("result", {result})
     return jsonify({"result": result})
     
 

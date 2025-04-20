@@ -150,6 +150,7 @@
         <div class="mb-3">
             <label for="operand2" class="form-label text-light">Operand 2:</label>
             <input type="number" id="operand2" name="operand2" class="form-control" placeholder="Enter second number">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
         </div>
         <div class="mb-3">
             <label for="operator" class="form-label text-light">Operator:</label>
@@ -174,7 +175,9 @@
 </div>
 
 <script>
+    const csrfToken = document.querySelector('input[name="csrf_token"]').value;
     document.addEventListener('DOMContentLoaded', () => {
+
         const form = document.getElementById('operator-form');
         const resultDiv = document.getElementById('result');
 
@@ -188,7 +191,10 @@
             try {
                 const response = await fetch('/evaluate', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrfToken
+                    },
                     body: JSON.stringify({ operand1, operand2, operator })
                 });
 
