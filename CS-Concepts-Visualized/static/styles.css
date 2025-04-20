@@ -1,6 +1,6 @@
 /* Body styling for dark theme */
 body {
-    background-color: #1e1e1e; /* Dark grey background (VS Code-like) */
+    background-color: #1e1e1e; /* Dark grey background (looks like github) */
     color: #d4d4d4; /* Light grey text for readability */
     font-family: Arial, sans-serif; /* Default font */
 }
