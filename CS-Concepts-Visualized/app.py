@@ -137,7 +137,6 @@ def register():
     return redirect("/")
 
 
-
 @app.route("/logout")
 def logout():
     """Log user out"""
@@ -232,8 +231,6 @@ def evaluate():
     return jsonify({"result": result})
     
 
-
-
 @app.route("/recursion")
 def recursion():
     """show the recursion page"""
@@ -285,7 +282,6 @@ def scores():
     user_id = session["user_id"]
     scores = db_app.execute("SELECT score FROM scores WHERE user_id = ?", (user_id,))
     return render_template("scores.html", scores=scores)
-
 
 
 @app.route("/cipher", methods=["GET", "POST"])
