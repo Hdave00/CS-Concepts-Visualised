@@ -23,7 +23,58 @@ Rubber Duck Debugging
             <h3 class="text-light">What is Rubber Duck Debugging?</h3>
             <p class="fs-5">
                 The term comes from a story in the book <a href="https://en.wikipedia.org/wiki/The_Pragmatic_Programmer">The Pragmatic Programmer</a> where a programmer would debug code by explaining it to a rubber duck they kept on their desk. The idea is that by slowing down and carefully describing each line of code, the developer often discovers their own mistake without any outside help.
+                Have a look at the sample C code below and try to figure out what the bugs/mistakes are. You can run it in your own IDE or just try to figure them out by looking at them. If you feel stuck, feel free to try out the 
+                duck debugging technique below! 
             </p>
+        </div>
+    </div>
+
+     <!-- sample code block -->
+     <div class="row mt-4">
+        <div class="col-md-12">
+            <h3 class="text-light">4 snippets of code with basic arithmetics and logic</h3>
+            <pre><code class="language-c">
+                // addition and division
+                #include &lt;stdio.h&gt;
+                    int main()
+                    {
+                        int a = 10, b = 3;
+                        printf("Addition: %i\n", a + b); // expected answer 13
+                        printf("Division: %i\n", a % b); // expected answer 3
+                        return 0;
+                    }
+                // example of subtraction
+                #include <stdio.h>
+                    int main()
+                    {
+                        int a = 5, b = 10;
+                        if (a > b)
+                        {
+                            printf("a minus b is: %i\n", a - b); // expected answer is positive integers only
+                        }
+                        return 0;
+                    }
+                // example using logical operators
+                #include <stdio.h>
+                    int main()
+                    {
+                        int a = 5, b = 10, c = 15;
+                        if ((a < b) && (b > c))
+                        {
+                            printf("Both conditions are true\n"); // this statement should be printed to the terminal
+                        }
+                        return 0;
+                    }
+                // example using ternary operators
+                #include <stdio.h>
+                    int main()
+                    {
+                        int a = 10, b = 20;
+                        int min = (a > b) ? a : b;
+                        printf("Min: %i\n", min);  // minimum value expected ie, 10 
+                        return 0;
+                    }
+            </code></pre>
         </div>
     </div>
 
