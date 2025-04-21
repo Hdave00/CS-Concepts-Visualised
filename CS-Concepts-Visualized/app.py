@@ -90,6 +90,10 @@ def login():
 def register():
     """Register user"""
 
+    # creating new connection to dbase and a new cursor object for multithreading, removes single threading clashes
+    db = sqlite3.connect('project.db')
+    db_app = db.cursor()
+
     form = RegisterForm()
 
     if request.method == "GET":
