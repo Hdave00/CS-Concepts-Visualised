@@ -49,6 +49,10 @@ def login():
     # Forget any user_id
     session.clear()
 
+    db = sqlite3.connect('project.db')
+    db_app = db.cursor()
+
+
     form = LoginForm()
     if form.validate_on_submit():
         
@@ -61,7 +65,7 @@ def login():
 
             # Query database for username
             # with this query, we will get back is a list of all of the rows that matched out select query
-            rows = db_app.execute("SELECT * FROM users WHERE username = ?", (form.username.data,),)
+            rows = db_app.execute("SELECT * FROM users WHERE username = ?", (form.username.data,),).fetchall()
 
             # when we run select query from the dbase, we get back a list of all of the rows that matched our select query
             # Ensure username exists and password is correct
@@ -71,9 +75,9 @@ def login():
                 return apology("invalid username and/or password", 403)
 
             # Remember which user has logged in
-            # the user had typed in valid username and password, and we have verified the validity of those values in previous lines,
+            # user had typed in valid username and password, and we have verified the validity of those values
             # then we can log the user in by using the session variable to keep track of info about current user
-            # so we store the current user's id in session that we got from the dbase
+            # string "id" to access the id column of the row, since rows is a list of dictionaries
             session["user_id"] = rows[0]["id"]
 
             # Redirect user to home page
