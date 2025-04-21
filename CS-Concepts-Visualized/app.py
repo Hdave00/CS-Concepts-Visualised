@@ -121,7 +121,7 @@ def register():
             rows = db_app.execute("SELECT * FROM users WHERE username = ?", (form.username.data,),)
 
             # return apology if "username already exists"
-            if len(rows) != 0:
+            if len(rows.fetchall()) != 0:
                 return apology("username already taken", 400)
 
             # insert user into dbase
@@ -135,7 +135,9 @@ def register():
 
             # log user in: first select the newest user who registered in the dbase, then log them in via session["user_id]
             rows = db_app.execute("SELECT * FROM users WHERE username = ?", (form.username.data,),)
-            session["user_id"] = rows[0]["id"]
+            # in SQLite, the default row factory returns rows as tuples, so we need to use integer indices to access the elements
+            # if the id column is the first column in the users table, access it using [0] instead of ["id"]
+            session["user_id"] = rows.fetchall()[0][0]
             flash("Registered Successfully!")
     return redirect("/")
 
