@@ -48,33 +48,33 @@
                         return 0;
                     }
                 // example of relational operators
-                #include <stdio.h>
+                #include &lt;stdio.h&gt;
                     int main()
                     {
                         int a = 5, b = 10;
-                        if (a < b)
+                        if (a &lt; b)
                         {
                             printf("a is less than b\n");
                         }
                         return 0;
                     }
                 // example of logical operators
-                #include <stdio.h>
+                #include &lt;stdio.h&gt;
                     int main()
                     {
                         int a = 5, b = 10, c = 15;
-                        if ((a < b) && (b < c))
+                        if ((a &lt; b) && (b &lt; c))
                         {
                             printf("Both conditions are true\n");
                         }
                         return 0;
                     }
                 // example of ternary operators
-                #include <stdio.h>
+                #include &lt;stdio.h&gt;
                     int main()
                     {
                         int a = 10, b = 20;
-                        int max = (a > b) ? a : b;
+                        int max = (a &gt; b) ? a : b;
                         printf("Max: %i\n", max);
                         return 0;
                     }
@@ -106,16 +106,16 @@
                     <tr>
                         <td>Relational</td>
                         <td>Compare two values and return a boolean result.</td>
-                        <td><code>==</code>, <code>!=</code>, <code><</code>, <code>></code>, <code><=</code>, <code>>=</code>
-                            example: <code>a > b</code> checks if a is greater than b.</td>
-                        <td>Checking if one number is greater than another: <code>if (a > b)</code></td>
+                        <td><code>==</code>, <code>!=</code>, <code></code>, <code>></code>, <code><=</code>, <code>>=</code>
+                            example: <code>a &gt; b</code> checks if a is greater than b.</td>
+                        <td>Checking if one number is greater than another: <code>if (a &gt; b)</code></td>
                     </tr>
                     <tr>
                         <td>Logical</td>
                         <td>Perform logical operations on boolean expressions.</td>
                         <td><code>&&</code> (and), <code>||</code> (or), <code>!</code> (not)
                             example: <code>a == b && c == d</code> checks if both <code>a</code> and <code>b</code> are equal, and <code>c</code> and <code>d</code> are equal.</td>
-                        <td>Checking if both conditions are true: <code>if ((a > b) && (c > d))</code></td>
+                        <td>Checking if both conditions are true: <code>if ((a &gt; b) && (c &gt; d))</code></td>
                     </tr>
                     <tr>
                         <td>Assignment</td>
@@ -127,8 +127,8 @@
                     <tr>
                         <td>Ternary</td>
                         <td>A shorthand for an <code>if-else</code> statement.</td>
-                        <td>example: <code>max = (a > b) ? a : b;</code> assigns the larger value to <code>max</code>.</td>
-                        <td>Finding the maximum of two numbers: <code>max = (a > b) ? a : b;</code></td>
+                        <td>example: <code>max = (a &gt; b) ? a : b;</code> assigns the larger value to <code>max</code>.</td>
+                        <td>Finding the maximum of two numbers: <code>max = (a &gt; b) ? a : b;</code></td>
                     </tr>
                 </tbody>
             </table>
@@ -162,8 +162,8 @@
                 <option value="%">Modulo (%)</option>
                 <option value="==">Equal to (==)</option>
                 <option value="!=">Not equal to (!=)</option>
-                <option value=">">Greater than (>)</option>
-                <option value="<">Less than (<)</option>
+                <option value=">">Greater than (&gt;)</option>
+                <option value="<">Less than (&lt;)</option>
             </select>
         </div>
         <button type="submit" class="btn btn-primary">Evaluate</button>
@@ -187,6 +187,13 @@
             const operand1 = document.getElementById('operand1').value;
             const operand2 = document.getElementById('operand2').value;
             const operator = document.getElementById('operator').value;
+            // console.log("operand1, 2 and operator", [operand1, operand2, operator]);
+
+            // if any field empty, alert and return
+            if (!operand1 || !operand2 || !operator) {
+                    alert('nuh uh, dont leave the field empty');
+                    return
+                }
 
             try {
                 const response = await fetch('/evaluate', {

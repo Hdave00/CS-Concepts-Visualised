@@ -18,13 +18,13 @@ app = Flask(__name__)
 load_dotenv()
 app.secret_key = os.getenv('SECRET_KEY')
 
-# Configure session to use filesystem (instead of signed cookies)
+# Configure session to use filesystem, instead of signed cookies (dont really need cookies)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 
-# TODO- use Flask-WTF for CSRF protection, using in all forms using CRUD, refer to npp
+# TODO- use Flask-WTF for CSRF protection, for all forms using CRUD, refer to npp
 csrf = CSRFProtect(app)
 
 
@@ -42,7 +42,6 @@ def after_request(response):
     return response
 
 
-# TODO change login form to use Flask-WTF
 @app.route("/login", methods=["GET", "POST"])
 def login():
     """Log user in"""
@@ -206,6 +205,9 @@ def evaluate():
     operand1 = int(data["operand1"])
     operand2 = int(data["operand2"])
     operator = data["operator"]
+
+    if not data["operand1"] or not data["operand2"] or not data["operator"]:
+        return jsonify({"error": "nuh uh, dont leave the field empty"}), 400
 
     # performing the operations
     if operator == "+":
