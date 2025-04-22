@@ -4,7 +4,7 @@ from flask import Flask, flash, redirect, url_for, render_template, request, ses
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask_wtf import CSRFProtect
-from flask_wtf.csrf import generate_csrf
+from flask_wtf.csrf import generate_csrf, CSRFError
 
 # local imports 
 from helpers import apology, login_required
@@ -16,21 +16,21 @@ from dotenv import load_dotenv
 app = Flask(__name__)
 
 load_dotenv()
-app.secret_key = os.getenv('SECRET_KEY')
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
 # Configure session to use filesystem, instead of signed cookies (dont really need cookies)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
+app.config["SESSION_COOKIE_HTTPONLY"] = True
+app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
+app.config["SESSION_COOKIE_SECURE"] = False  # True for HTTPS
 Session(app)
 
 
 # TODO- use Flask-WTF for CSRF protection, for all forms using CRUD, refer to npp
+app.config['WTF_CSRF_ENABLED'] = True
 csrf = CSRFProtect(app)
 
-
-# use SQLite database (we can connect to a database by having a variable [db] assigned to cursor)
-db = sqlite3.connect('project.db')
-db_app = db.cursor()
 
 # disabling caching of responses, to handle the event in case we make a change to save file and the browser does not notice
 @app.after_request
@@ -42,12 +42,18 @@ def after_request(response):
     return response
 
 
+@app.errorhandler(CSRFError)
+def handle_csrf_error(e):
+    return apology(f"CSRF Error: {e.description}", 403)
+
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     """Log user in"""
 
     # Forget any user_id
-    session.clear()
+
+    session.pop("user_id", None)
 
     db = sqlite3.connect('project.db')
     db_app = db.cursor()
@@ -58,10 +64,14 @@ def login():
         
         # Ensure username was submitted
             if not form.username.data:
-                return apology("must provide username", 403)
+                return apology("must provide username", 400)
             
             elif not form.password.data:
-                return apology("must provide password", 403)
+                return apology("must provide password", 400)
+            
+            print("csrf token", {form.csrf_token.data})
+            print("username:", {form.username.data})
+            print("password:", {form.password.data})
 
             # Query database for username
             # with this query, we will get back is a list of all of the rows that matched out select query
@@ -69,16 +79,18 @@ def login():
 
             # when we run select query from the dbase, we get back a list of all of the rows that matched our select query
             # Ensure username exists and password is correct
+            # remember that rows is a list of tuples, not a list of dictionaries so use rows[0][2] to access the correct column (check schema)
             if len(rows) != 1 or not check_password_hash(
-                rows[0]["hash"], form.password.data
+                rows[0][2], form.password.data
             ):
                 return apology("invalid username and/or password", 403)
 
             # Remember which user has logged in
             # user had typed in valid username and password, and we have verified the validity of those values
             # then we can log the user in by using the session variable to keep track of info about current user
-            # string "id" to access the id column of the row, since rows is a list of dictionaries
-            session["user_id"] = rows[0]["id"]
+            # int [0] to access the id column of the row, since rows is a list of tuples
+            session["user_id"] = rows[0][0]
+            db.close()
 
             # Redirect user to home page
             flash("You are logged in!")
@@ -108,7 +120,7 @@ def register():
 
         if form.validate_on_submit():
         
-            session.clear()
+            session.pop("user_id", None)
             # get form data
             # handle username, password and confirm password
             if not form.username.data:
@@ -119,6 +131,10 @@ def register():
 
             elif not form.confirm_password.data:
                 return apology("Please confirm password", 400)
+            
+            print("csrf token", {form.csrf_token.data})
+            print("username:", {form.username.data})
+            print("password:", {form.password.data})
 
             # handle an already existing username
             # first check the dbase for usernames that already exist and then compare the user given username with the dbase
@@ -136,27 +152,31 @@ def register():
 
             # insert a new row into the db with their values
             db_app.execute("INSERT INTO users (username, hash) VALUES (?, ?)", (form.username.data, hashed_password))
+            db.commit()
 
             # log user in: first select the newest user who registered in the dbase, then log them in via session["user_id]
             rows = db_app.execute("SELECT * FROM users WHERE username = ?", (form.username.data,),)
             # in SQLite, the default row factory returns rows as tuples, so we need to use integer indices to access the elements
             # if the id column is the first column in the users table, access it using [0] instead of ["id"]
             session["user_id"] = rows.fetchall()[0][0]
+            db.close()
             flash("Registered Successfully!")
-    return redirect("/")
+            return redirect("/")
+        
+        # form did not validate
+        return render_template("register.html", form=form)
 
 
 @app.route("/logout")
 def logout():
     """Log user out"""
 
-    # Forget any user_id
-    session.clear()
+    # log out 
+    session.pop("user_id", None)
 
     # Redirect user to login form
     flash("You have logged out!")
     return redirect("/")
-
 
 
 @app.route("/")
@@ -279,10 +299,16 @@ def update_variables():
 @app.route('/submit_score', methods=['POST'])
 @login_required
 def submit_score():
+
+    db = sqlite3.connect('project.db')
+    db_app = db.cursor()
+
     data = request.get_json()
     score = data.get('score')
     user_id = session["user_id"]
     db_app.execute("INSERT INTO scores (user_id, score) VALUES (?, ?)", (user_id, score))
+    db.commit()
+    db.close()
     return redirect(url_for('scores'))
 
 
@@ -291,9 +317,16 @@ def submit_score():
 @app.route('/scores')
 @login_required
 def scores():
+
+    db = sqlite3.connect('project.db')
+    db_app = db.cursor()
+
     user_id = session["user_id"]
     scores = db_app.execute("SELECT score FROM scores WHERE user_id = ?", (user_id,))
+    scores = db_app.fetchall()
+    db.close()
     return render_template("scores.html", scores=scores)
+
 
 
 @app.route("/cipher", methods=["GET", "POST"])

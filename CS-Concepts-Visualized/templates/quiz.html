@@ -7,6 +7,11 @@
 {% endblock %}
 
 {% block main %}
+
+<form id="csrf-form">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+</form>
+
 <div class="header">
     <h1>Test your C knowledge!</h1>
     <p>(please click the submit score button at the bottom of the page after you have answered all questions)</p>
