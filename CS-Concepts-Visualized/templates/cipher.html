@@ -22,6 +22,7 @@
             <div class="mb-3">
                 <label for="key" class="form-label">Key:</label>
                 <input type="text" id="key" name="key" class="form-control" required>
+                <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
             </div>
             <div class="mb-3">
                 <label for="plaintext" class="form-label">Plaintext:</label>
