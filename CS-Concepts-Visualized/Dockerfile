@@ -1,5 +1,5 @@
 # Set the base image
-FROM python:3.12.3
+FROM python:3.12-alpine
 
 # Copy the current directory contents into the container
 COPY . /usr/src/app
