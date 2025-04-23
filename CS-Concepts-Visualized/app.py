@@ -51,8 +51,7 @@ def handle_csrf_error(e):
 def login():
     """Log user in"""
 
-    # Forget any user_id
-
+    # Forget any user_id, delete the user_id or any other login-specific keys
     session.pop("user_id", None)
 
     db = sqlite3.connect('project.db')
@@ -68,10 +67,6 @@ def login():
             
             elif not form.password.data:
                 return apology("must provide password", 400)
-            
-            print("csrf token", {form.csrf_token.data})
-            print("username:", {form.username.data})
-            print("password:", {form.password.data})
 
             # Query database for username
             # with this query, we will get back is a list of all of the rows that matched out select query
@@ -120,7 +115,9 @@ def register():
 
         if form.validate_on_submit():
         
+            # delete the user_id or any other login-specific keys
             session.pop("user_id", None)
+
             # get form data
             # handle username, password and confirm password
             if not form.username.data:
@@ -132,9 +129,6 @@ def register():
             elif not form.confirm_password.data:
                 return apology("Please confirm password", 400)
             
-            print("csrf token", {form.csrf_token.data})
-            print("username:", {form.username.data})
-            print("password:", {form.password.data})
 
             # handle an already existing username
             # first check the dbase for usernames that already exist and then compare the user given username with the dbase
@@ -152,6 +146,8 @@ def register():
 
             # insert a new row into the db with their values
             db_app.execute("INSERT INTO users (username, hash) VALUES (?, ?)", (form.username.data, hashed_password))
+
+            # commit database changes 
             db.commit()
 
             # log user in: first select the newest user who registered in the dbase, then log them in via session["user_id]
@@ -159,6 +155,8 @@ def register():
             # in SQLite, the default row factory returns rows as tuples, so we need to use integer indices to access the elements
             # if the id column is the first column in the users table, access it using [0] instead of ["id"]
             session["user_id"] = rows.fetchall()[0][0]
+
+            # close database cursor
             db.close()
             flash("Registered Successfully!")
             return redirect("/")
