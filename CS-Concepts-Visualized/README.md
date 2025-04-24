@@ -13,6 +13,7 @@ A web-based application designed to visually and interactively introduce users t
 - JavaScript
 - CSS
 - HTML
+- WebAssembly (Wasm)
 
 This application includes multiple interactive modules that simplify learning fundamental CS topics such as arrays, loops, conditionals, recursion, and more. It includes a login-based quiz functionality, real-time algorithm visualization, Blockly workspace integration, and dynamic C code examples formatted for clarity.
 
@@ -90,7 +91,9 @@ The app uses 19 HTML templates for different functionalities, including:
 4. Run the Flask application:
    ```bash
    flask run
+
    ```
+5. Optionally, you could use the docker container by running `docker-compose up`, if you want a 1:1 build and representation of the source.  
 
 ## 7. Usage
 
