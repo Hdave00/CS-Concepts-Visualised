@@ -13,6 +13,7 @@ A web-based application designed to visually and interactively introduce users t
 - JavaScript
 - CSS
 - HTML
+- WebAssembly (WASM)
 
 This application includes multiple interactive modules that simplify learning fundamental CS topics such as arrays, loops, conditionals, recursion, and more. It includes a login-based quiz functionality, real-time algorithm visualization, Blockly workspace integration, and dynamic C code examples formatted for clarity.
 
